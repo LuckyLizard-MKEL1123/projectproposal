@@ -17,4 +17,20 @@ For fine-tuning feature weights, the NN-based models use arithmetic-intensive gr
 The earliest keyword spotting(KWS) classification algorithms introduced in the late 1970s relied on MFCCs for feature extraction since the coefficients generated had a relatively low dimensionality when compared to the raw input data at the time [2]. It was further shown that, when compared to other audio extraction approaches like close prediction coding coefficients (LPCCs) and perceptual linear production (PLP), MFCCs perform much better with increasing background noise and low SNR [2], [5]. <br><br>
 Later it was proven that Recurrent Neural Networks (RNNs) outperform HMMs but suffer from operational delay as the issue grows, yet RNNs still have quicker run-times than HMM pipelines as they do not need a decoder method. Deep Neural Networks (DNN) was utilized to minimise latency since they consume less memory and operate faster than HMMs[6]. Common DNN optimization strategies like pruning, encoding, and quantization contribute to accuracy decreases in KWS applications[2], [5]. <br><br>
 
-# Testing Methodology
+# Methodology
+### Testing Methodolody
+![1](https://user-images.githubusercontent.com/118822144/207984389-7eb4489c-dab0-48be-bbcd-6fab4f745978.JPG) <br>
+_Figure 1: Methodology for implementation_ <br>
+Figure 1 shows the methodology to implement the keyword spotting system. Firstly, the audio data is collected through open source resources such as Google speech command dataset, or a manually-created process. The collected data is processed with Mel-frequency cepstral coefficients (MFCC) which is an audio processing technique. This is due to raw audio data that may contain noise that can corrupt the original signal. MFCC involves a sequence of signal-processing operations to extract the features of audio files. When the audio files are processed, it is split into the training dataset and the test dataset. The training dataset will be fed into the neural network and the accuracy is determined by using the test dataset. Edge impulse provides both audio processing features and neural networks. Once the neural network is trained successfully, the model will be exported into the STM32 microprocessor for further operation. 
+
+The microphone will be connected to the system and keep reading audio signals to spot the keyword. There are 2 keywords which are A and B. When the A is spotted, a series of morse codes “S-O-S” will be transmitted by LED. This shows that a person is in danger and is subtly requesting help. On the other hand, when B is spotted, this indicates that a person is in extreme danger and requests immediate help. A buzzer will be turned ON to alert the occurrence of this situation. 
+
+### Hardware Design
+A few components of electronic hardware needed for this project. It is shown as below <br>
+***List of Equipment/Electronic Components :-*** <br>
+1. STM32  Nucleo-64 (stm32f411)
+2. Jumper Wire
+3. RED LED
+4. Buzzer
+5. Breadbroad
+6. Microphones
